@@ -20,7 +20,7 @@ minLeaf(G, [A-B|T], E, L) :- leaf(B, G), minLeaf(G, T, Z, X), B < X, L is B, E i
 minLeaf(G, [A-B|T], E, L) :- leaf(B, G), minLeaf(G, T, Z, X), B > X, L is X, E is Z.
 minLeaf(G, [A-B|T], E, L) :- not(leaf(A, G)), not(leaf(B, G)), minLeaf(G, T, E, L).
 
-/USUWANIE KRAWEDZI *G-graf wejsciowy, G1-wyjsc,A-B do usuneicia, zal. ze wiemy ze tu jest*/
+/*USUWANIE KRAWEDZI *G-graf wejsciowy, G1-wyjsc,A-B do usuneicia, zal. ze wiemy ze tu jest*/
 
 delete([],E,L,G1) :- G1 = [].
 delete([A-B|[]],E,L,G1) :- G1 =[].
