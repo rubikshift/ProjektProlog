@@ -12,12 +12,13 @@ appears(V, [A-B|T], X) :- V\==A, V\==B, appears(V, T, Y), X is 0 + Y.
 leaf(V, G) :- appears(V, G, 1).
 
 /*Minimalny lisc (i wierzcholek do ktorego przylega)*/
-minLeaf(G, [A-B|[]], B, L) :- leaf(A, G), L is A.
-minLeaf(G, [A-B|[]], A, L) :- leaf(B, G), L is B. 
+minLeaf(G, [A-B|[]], B, A) :- leaf(A, G).
+minLeaf(G, [A-B|[]], A, B) :- leaf(B, G). 
 minLeaf(G, [A-B|T], E, L) :- leaf(A, G), minLeaf(G, T, Z, X), A < X, L is A, E is B.
 minLeaf(G, [A-B|T], E, L) :- leaf(A, G), minLeaf(G, T, Z, X), A > X, L is X, E is Z.
 minLeaf(G, [A-B|T], E, L) :- leaf(B, G), minLeaf(G, T, Z, X), B < X, L is B, E is A.
-minLeaf(G, [A-B|T], E, L) :- leaf(B, G), minLeaf(G, T, Z, X), B > X, L is X, E is Z.  
+minLeaf(G, [A-B|T], E, L) :- leaf(B, G), minLeaf(G, T, Z, X), B > X, L is X, E is Z.
+minLeaf(G, [A-B|T], E, L) :- not(leaf(A, G)), not(leaf(B, G)), minLeaf(G, T, E, L).
 
 /*Kody Prufera*/
 prufer_code(G, []) :- len(G, L), L < 2.
