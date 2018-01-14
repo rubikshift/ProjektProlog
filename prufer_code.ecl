@@ -20,18 +20,10 @@ minLeaf(G, [A-B|T], E, L) :- leaf(B, G), minLeaf(G, T, Z, X), B < X, L is B, E i
 minLeaf(G, [A-B|T], E, L) :- leaf(B, G), minLeaf(G, T, Z, X), B > X, L is X, E is Z.
 minLeaf(G, [A-B|T], E, L) :- not(leaf(A, G)), not(leaf(B, G)), minLeaf(G, T, E, L).
 
-/*wkoncu chyba nie uzylem*/
-noteq(A,B,C,D) :- A==C,B \==D.
- noteq(A,B,C,D) :- A==D,B \==C.
- noteq(A,B,C,D) :- A\==C,B \==D,B\==C,A \==D.
- noteq(A,B,C,D) :- B==C,A \==D.
- noteq(A,B,C,D) :- B==D,A\==C.
-
-/USUWANIE KRAWEDZI *G-graf wejsciowy, G1-wyjsc,A-B do usuneicia*/
+/USUWANIE KRAWEDZI *G-graf wejsciowy, G1-wyjsc,A-B do usuneicia, zal. ze wiemy ze tu jest*/
 
 delete([],E,L,G1) :- G1 = [].
 delete([A-B|[]],E,L,G1) :- G1 =[].
-
 delete([A-B|T],E,L,G1) :- A == E , B == L, G1 = T.
 delete([A-B|T],E,L,G1) :- B == E , A == L, G1 = T.
 delete([A-B|T],E,L,G1) :- delete(T,E,L,G2), G1 = [A-B|G2].
