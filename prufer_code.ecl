@@ -14,10 +14,10 @@ leaf(V, A) :- appears(V, A, 1).
 /*miniMalna krawedz (z najmniejszym lisciem)*/
 minLeaf(G, [A-B|[]], A-B, L) :- leaf(A, G), L is A.
 minLeaf(G, [A-B|[]], A-B, L) :- leaf(B, G), L is B. 
-minLeaf(G, [A-B|T], A-B, L) :- leaf(A, G), minLeaf(G, T, E, X), A < X, L is A.
-minLeaf(G, [A-B|T], A-B, L) :- leaf(A, G), minLeaf(G, T, E, X), A > X, L is X.
-minLeaf(G, [A-B|T], A-B, L) :- leaf(B, G), minLeaf(G, T, E, X), B < X, L is B.
-minLeaf(G, [A-B|T], A-B, L) :- leaf(B, G), minLeaf(G, T, E, X), B > X, L is X.  
+minLeaf(G, [A-B|T], E, L) :- leaf(A, G), minLeaf(G, T, E, X), A < X, L is A.
+minLeaf(G, [A-B|T], E, L) :- leaf(A, G), minLeaf(G, T, E, X), A > X, L is X.
+minLeaf(G, [A-B|T], E, L) :- leaf(B, G), minLeaf(G, T, E, X), B < X, L is B.
+minLeaf(G, [A-B|T], E, L) :- leaf(B, G), minLeaf(G, T, E, X), B > X, L is X.  
 
 /*Kody Prufera*/
 prufer_code(A, []) :- len(A, L), L < 2.
