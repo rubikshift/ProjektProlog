@@ -30,4 +30,4 @@ delete([A-B|T],E,L,G1) :- delete(T,E,L,G2), G1 = [A-B|G2].
 
 /*Kody Prufera*/
 prufer_code(G, []) :- len(G, L), L < 2.
-prufer_code(G, ODP) :- minLeaf(G,G,E,L),delete(G,E,L,G1), prufer_code(G1,ODP1), ODP= [E|ODP1].
+prufer_code(G, ODP) :- minLeaf(G,G,E,L),delete(G,E,L,G1), prufer_code(G1,ODP1), ODP = [E|ODP1], !.
